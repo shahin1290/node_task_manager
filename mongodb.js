@@ -1,4 +1,4 @@
-const { MongoClient } = require('mongodb')
+const { MongoClient, ObjectID } = require('mongodb')
 
 
 const connectionURL = 'mongodb://127.0.0.1:27017'
@@ -10,23 +10,39 @@ MongoClient.connect(connectionURL, { useNewUrlParser: true }, (error, client) =>
 
   const db = client.db(databaseName)
 
-  db.collection('users').insertOne({
-    name: 'Andrew',
-    age: 27
-  })
+  // db.collection('users').insertOne({
+  //   name: 'kona',
+  //   age: 31
+  //   }) 
+  //   .then((result) => {
+  //    console.log(result)
+  //   })
+  
 
-  db.collection('tasks').insertMany([
-    {
-      description: 'Clean the house',
-      completed: true
-    },{
-      description: 'Renew inspection',
-      completed: false
+  // db.collection('tasks').insertMany([
+  //   {
+  //     description: 'Clean the house',
+  //     completed: true
+  //   },{
+  //     description: 'Renew inspection',
+  //     completed: false
+  //   }
+  //   ], (error, result) => {
+  //     if (error) {
+  //       return console.log('Unable to insert tasks!')
+  //     }
+  //     console.log(result.ops)
+  //   }
+  // )
+
+  db.collection('users').updateOne({
+    _id: new ObjectID('5cae421e3f5d3a775deca223')
+  }, {
+    $set: {
+      name: 'Moin'
     }
-    ], (error, result) => {
-      if (error) {
-        return console.log('Unable to insert tasks!')
-      }
-      console.log(result.ops)
-    })
+  })
+  .then((result) => {
+    console.log(result)
+  })
 })
