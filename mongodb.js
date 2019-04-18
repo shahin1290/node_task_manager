@@ -35,14 +35,43 @@ MongoClient.connect(connectionURL, { useNewUrlParser: true }, (error, client) =>
   //   }
   // )
 
-  db.collection('users').updateOne({
-    _id: new ObjectID('5cae421e3f5d3a775deca223')
-  }, {
-    $set: {
-      name: 'Moin'
-    }
-  })
-  .then((result) => {
-    console.log(result)
-  })
+  // db.collection('users').updateOne({
+  //   _id: new ObjectID('5cae421e3f5d3a775deca223')
+  // }, {
+  //   $set: {
+  //     name: 'Moin'
+  //   }
+  // })
+  // .then((result) => {
+  //   console.log(result)
+  // })
+
+  //  db.collection('tasks').insertOne({
+  //   description: 'Go for shopping',
+  //   completed: false
+  //   }) 
+  //   .then((result) => {
+  //    console.log(result.ops)
+  //   })
+
+  //  db.collection('tasks').updateMany({
+  //   completed: false
+  // }, {
+  //   $set: {
+  //     completed: true
+  //   }
+  // })
+  // .then((result) => {
+  //   console.log(result.modifiedCount)
+  // })
+  // .catch((error) => {
+  //   console.log(error)
+  // })
+
+  db.collection('users').deleteMany({
+    name: 'kona'
+    }) 
+    .then((result) => {
+     console.log(result)
+    })
 })
