@@ -3,9 +3,9 @@ const Task = require('../models/task')
 const router = express.Router()
 const auth = require('../middleware/auth')
 
-router.get('/tasks', async(req, res) => {
-  const tasks = await Task.find({})
-
+router.get('/tasks', auth, async(req, res) => {
+  // const tasks = await Task.find({})
+  const tasks = await Task.find({owner: req.user._id})
   try {
     res.send(tasks)
   } catch (error) {
